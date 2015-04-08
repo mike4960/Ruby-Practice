@@ -5,4 +5,22 @@ choices = words.sample(4)
 updated_choices = choices.join(" ")
 random_word = choices.pop
 new_random_word = "_" * random_word.length
-puts new_random_word
+words_collection = words
+words_collection.map! { |element|
+  if(element == random_word)
+    new_random_word
+  else
+    element
+  end
+}
+puts words_collection.join(" ")
+puts updated_choices
+
+puts "What is your answer?"
+answer = gets.chomp
+  if answer == random_word
+    puts "You are correct!"
+  else answer != random_word
+  puts "You are incorrect.  Try again!"
+end
+
