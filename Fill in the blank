@@ -16,11 +16,21 @@ words_collection.map! { |element|
 puts words_collection.join(" ")
 puts updated_choices
 
+def get_answer(answer, random_word)
+  puts "What is your answer?"
+  answer = gets.chomp
+  puts "You are incorrect!" if answer != random_word
+  return get_answer(answer, random_word) if answer != random_word
+  puts "You are correct!" if answer == random_word
+  rescue SystemExit
+end
+
 puts "What is your answer?"
 answer = gets.chomp
-  if answer == random_word
-    puts "You are correct!"
-  else answer != random_word
+if answer == random_word
+  puts "You are correct!"
+else answer != random_word
   puts "You are incorrect.  Try again!"
+get_answer(answer, random_word)
 end
 
