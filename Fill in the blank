@@ -2,12 +2,5 @@ puts "Enter your sentence here."
 sentence = gets.chomp
 words = sentence.split
 choices = sentence.sample(4)
-updated_choices = " ".join(choices)
+updated_choices = choices.join(" ")
 random_word = choices.pop
-puts random_word
-if sentence.include? random_word
-  random_word = '________'  #I want random_word to be equal to the length of the randome_word and replaced with an underline
-end
-if sentence.index(random_word)
-  puts "#{sentence.join(" ")}"
-end
