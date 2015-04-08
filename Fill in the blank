@@ -1,6 +1,5 @@
 puts "Enter your sentence here."
-sentence = gets.chomp
-sentence = sentence.split
+sentence = gets.chomp.split(", ")
 choices = sentence.sample(4)
 random_word = choices.pop
 puts random_word
