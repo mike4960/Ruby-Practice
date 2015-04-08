@@ -1,6 +1,8 @@
 puts "Enter your sentence here."
-sentence = gets.chomp.split
+sentence = gets.chomp
+words = sentence.split
 choices = sentence.sample(4)
+updated_choices = " ".join(choices)
 random_word = choices.pop
 puts random_word
 if sentence.include? random_word
