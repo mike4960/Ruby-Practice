@@ -4,3 +4,4 @@ words = sentence.split
 choices = sentence.sample(4)
 updated_choices = choices.join(" ")
 random_word = choices.pop
+new_random_word = random_word.length * "_"
