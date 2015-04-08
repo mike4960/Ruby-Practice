@@ -1,7 +1,7 @@
 puts "Enter your sentence here."
 sentence = gets.chomp
 words = sentence.split
-choices = sentence.sample(4)
+choices = words.sample(4)
 updated_choices = choices.join(" ")
 random_word = choices.pop
 new_random_word = "_" * random_word.length
