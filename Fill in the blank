@@ -1,36 +1,30 @@
-puts "Enter your sentence here."
-sentence = gets.chomp
-words = sentence.split
-choices = words.sample(4)
-updated_choices = choices.join(" ")
-random_word = choices.pop
-new_random_word = "_" * random_word.length
-words_collection = words
-words_collection.map! { |element|
-  if(element == random_word)
-    new_random_word
-  else
-    element
+def main
+  # Get the list of sentences from the user
+  puts 'Enter a list of sentences. A sentence is a series of words terminated by a . ? or ! and one or more spaces.'
+  sentences = gets.chomp.split(/[\.!\\?]\s+/).map { |sentence| sentence.delete('.') }
+
+  # puts 'You entered: ', sentences
+
+  sentences.each_with_index do |sentence, i|
+    blanked_sentence, choices, missing_word = blankify(sentence)
+    puts "Sentence ##{i+1}:", blanked_sentence, choices
+
+    loop do
+      puts "\nWhat's the missing word?"
+      break if gets.chomp == missing_word
+      puts 'Wrong. Try again.'
+    end
+
+    puts 'Congratulations! You got this one!', ''
   end
-}
-puts words_collection.join(" ")
-puts updated_choices
-
-def get_answer(answer, random_word)
-  puts "What is your answer?"
-  answer = gets.chomp
-  puts "You are incorrect!" if answer != random_word
-  return get_answer(answer, random_word) if answer != random_word
-  puts "You are correct!" if answer == random_word
-  rescue SystemExit
 end
 
-puts "What is your answer?"
-answer = gets.chomp
-if answer == random_word
-  puts "You are correct!"
-else answer != random_word
-  puts "You are incorrect.  Try again!"
-get_answer(answer, random_word)
+def blankify(sentence)
+  choices = sentence.split.sample(4).shuffle
+  missing_word = choices.sample
+  blanked_sentence = sentence.sub(/\b#{Regexp.quote(missing_word)}\b/, '_' * missing_word.length)
+
+  return [blanked_sentence, choices.join(' '), missing_word]
 end
 
+main
